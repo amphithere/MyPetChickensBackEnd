@@ -1,8 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Game {
+public class Game extends Observable{
 	private ArrayList<Chicken> chickens;
 	public Game(){
 		this.chickens = new ArrayList<Chicken>();
@@ -12,13 +13,8 @@ public class Game {
 	 * If Chicken's hunger goes to 0, it dies.
 	 * Put in loop or Timer
 	 */
-	private void checkChickens(){
-		for(Chicken i: chickens){
-			if(i.getHunger() == 0){
-				i.die();
-				chickens.remove(i); // Make sure that works, feel like it'd cause an error because it's 
-				// concurrent modifying
-			}
-		}
+	private void killChicken(Chicken chicken){
+		// TODO
 	}
+	
 }

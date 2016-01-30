@@ -1,18 +1,36 @@
 package model;
 
-public class Egg extends Chicken{
+import java.util.Random;
+
+public class Egg {
 	private int incubationDay;
-	private ChickenTree tree;
-	private boolean deformed;
+	private boolean dead;
+
 	
 	public Egg(Chicken dad, Chicken mom){
 		this.incubationDay = 0;
-		this.tree = new ChickenTree(dad, mom, this); // Think about inheritence and how you should implement the tree
 	}
 	
 	private void hatch(){
-		// hatch stuff
+		
 	}
+	
+	
+	
+	/**
+	 * Kills the chicken
+	 */
+	public void die(){
+		this.dead = true;
+	}
+	
+//	/**
+//	 * 
+//	 * @return chicken genetics
+//	 */
+//	public Genetics getGenetic(){
+//		return genes;
+//	}
 	
 	public void incubate(){
 		incubationDay+=10;
