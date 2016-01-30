@@ -1,5 +1,7 @@
 package coops;
 
+import java.awt.Point;
+
 import Chickens.Chicken;
 import Chickens.NormalChicken;
 
@@ -10,13 +12,18 @@ import Chickens.NormalChicken;
  */
 public abstract class Coop {
 	protected int comfortLevel;
-	public Coop(){
+	protected Point location;
+	
+	public Coop(Point location){
+		this.location = location;
 		setComfortLevel();
 		
 	}
 	
 	public abstract void setComfortLevel();
-	
+	public Point getLocation(){
+		return location;
+	}
 	public NormalChicken breedChickens(Chicken mom, Chicken dad){
 		return new NormalChicken(mom, dad);
 	}

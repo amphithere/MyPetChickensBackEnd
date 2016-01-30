@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.awt.Point;
+
 import org.junit.Test;
 
 import Chickens.Chicken;
@@ -38,7 +40,7 @@ public class MyPetChickensTest {
 	
 	@Test
 	public void coopBreedCheck(){
-		BasicCoop basic = new BasicCoop();
+		BasicCoop basic = new BasicCoop(new Point(1,1));
 		StarterBrownChicken wilma = new StarterBrownChicken(null, null);
 		StarterWhiteChicken zeus = new StarterWhiteChicken(null, null);
 		StarterWhiteChicken snow = new StarterWhiteChicken(null, null);

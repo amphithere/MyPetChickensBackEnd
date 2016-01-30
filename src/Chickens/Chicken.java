@@ -1,5 +1,6 @@
 package Chickens;
 
+import java.awt.Point;
 import java.util.Random;
 
 import feed.Food;
@@ -14,6 +15,7 @@ public abstract class Chicken {
 	protected Chicken dad;
 	protected Genetics genetics;
 	protected int gender;
+	private Point location;
 	private Random r;
 	
 	public Chicken(Chicken mom, Chicken dad) {
@@ -21,10 +23,31 @@ public abstract class Chicken {
 		this.hunger = 5;
 		this.mom = mom;
 		this.dad = dad;
-		this.maxAge = 14;
+		this.maxAge = 600;
 		this.r = new Random();
 		this.gender = r.nextInt(1);
+		location = new Point(1,1);
 		setGenetics();
+	}
+	
+	public void move(){
+		int newLocation = r.nextInt(4);
+		if(newLocation == 0){
+		   location.x += 1;
+		}
+		if(newLocation == 1){
+		   location.x -= 1;
+		}
+		if(newLocation == 2){
+		   location.y += 1;
+		}
+		if(newLocation == 3){
+		   location.y -= 1;
+		}
+	}
+	
+	public Point getLocation(){
+		return location;
 	}
 	
 	public void setGenetics(){
@@ -107,7 +130,12 @@ public abstract class Chicken {
 	public Genetics getGenetics(){
 		return genetics;
 	}
+	
 	public void deformed(){
-		maxAge-=5;
+		maxAge-=300;
+	}
+	
+	public int getMaxAge(){
+		return maxAge;
 	}
 }
