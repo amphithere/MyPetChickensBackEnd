@@ -1,4 +1,4 @@
-package model;
+package Chickens;
 
 public class ChickenTree {
 	public ChickenTree(){

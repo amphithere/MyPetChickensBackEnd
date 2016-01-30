@@ -2,6 +2,8 @@ package model;
 
 import java.util.Random;
 
+import Chickens.Chicken;
+
 public class Egg {
 	private int incubationDay;
 	private boolean dead;

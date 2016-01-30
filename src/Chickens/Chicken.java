@@ -1,16 +1,20 @@
-package model;
+package Chickens;
 
 import java.util.Random;
 
 import feed.Food;
+import model.Genetics;
 
-public class Chicken {
-	private int maxAge;
-	private int age;
-	private int hunger;
-	private Chicken mom;
-	private Chicken dad;
-	private Genetics genetics;
+public abstract class Chicken {
+	protected String name;
+	protected int maxAge;
+	protected int age;
+	protected int hunger;
+	protected Chicken mom;
+	protected Chicken dad;
+	protected Genetics genetics;
+	protected int gender;
+	private Random r;
 	
 	public Chicken(Chicken mom, Chicken dad) {
 		this.age = 0;
@@ -18,11 +22,36 @@ public class Chicken {
 		this.mom = mom;
 		this.dad = dad;
 		this.maxAge = 14;
-		this.genetics = new Genetics(mom.getGenetics().getGenes(), dad.getGenetics().getGenes() );
+		this.r = new Random();
+		this.gender = r.nextInt(1);
+		setGenetics();
 	}
 	
+	public void setGenetics(){
+		if(mom != null & dad != null){
+			this.genetics = new Genetics(mom.getGenetics().getGenes(), dad.getGenetics().getGenes());
+		}
+		else {
+			// Do nothing
+		}
+	}
 	
-
+	public String getGender(){
+		if (gender == 0){
+			return "Female";
+		}
+		else {
+			return "Male";
+		}
+	}
+	
+	public void setGender(int gen){
+		gender = gen;
+	}
+	public void setName(String name){
+		this.name = name;
+	}
+	
 	/**
 	 * Ages the chicken by one year
 	 */

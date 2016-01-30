@@ -19,7 +19,8 @@ public class Genes {
 	}
 	
 	private void addGenes(){
-		genes.add(firstAllele, secondAllele);
+		genes.add(firstAllele);
+		genes.add(secondAllele);
 	}
 	public int getFirstAllele(){
 		return firstAllele;

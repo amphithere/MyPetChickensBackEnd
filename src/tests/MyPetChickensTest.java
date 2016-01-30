@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import model.Chicken;
+import Chickens.Chicken;
+import Chickens.NormalChicken;
+import Chickens.StarterBrownChicken;
+import Chickens.StarterWhiteChicken;
+import coops.BasicCoop;
 import model.Genes;
 import model.Genetics;
 
@@ -18,10 +22,29 @@ public class MyPetChickensTest {
 	
 	@Test
 	public void testGenetics(){
-		Genes momG = new Genes(0, 0);
+		Genes momG = new Genes(1, 0);
 		Genes dadG = new Genes(1, 1);
-		Chicken mom = new Chicken(null, null);
-		Chicken dad = new Chicken(null, null);
 		Genetics genetics = new Genetics(momG, dadG);
+		assertEquals("Brown", genetics.getColor());
+	}
+	
+	@Test
+	public void starterChickens(){
+		StarterBrownChicken wilma = new StarterBrownChicken(null, null);
+		StarterWhiteChicken zeus = new StarterWhiteChicken(null, null);
+		assertEquals("Brown", wilma.getGenetics().getColor());
+		assertEquals("White", zeus.getGenetics().getColor());
+	}
+	
+	@Test
+	public void coopBreedCheck(){
+		BasicCoop basic = new BasicCoop();
+		StarterBrownChicken wilma = new StarterBrownChicken(null, null);
+		StarterWhiteChicken zeus = new StarterWhiteChicken(null, null);
+		StarterWhiteChicken snow = new StarterWhiteChicken(null, null);
+		NormalChicken childChicken = basic.breedChickens(wilma, zeus);
+		assertEquals("Brown", childChicken.getGenetics().getColor());
+		NormalChicken whiteChickenChild = basic.breedChickens(snow, zeus);
+		assertEquals("White", whiteChickenChild.getGenetics().getColor());
 	}
 }

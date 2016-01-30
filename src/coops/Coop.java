@@ -1,6 +1,7 @@
 package coops;
 
-import model.Chicken;
+import Chickens.Chicken;
+import Chickens.NormalChicken;
 
 /**
  * Where you can breed your chickens
@@ -16,8 +17,7 @@ public abstract class Coop {
 	
 	public abstract void setComfortLevel();
 	
-	public void breedChickens(Chicken mom, Chicken dad){
-		// ChickenTree
-		// Genetics
+	public NormalChicken breedChickens(Chicken mom, Chicken dad){
+		return new NormalChicken(mom, dad);
 	}
 }

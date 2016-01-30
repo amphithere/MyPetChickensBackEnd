@@ -30,6 +30,9 @@ public class Genetics {
 		r = new Random();
 		chooseGenes();
 	}
+	public void setGenetics(int allele1, int allele2){
+		genes = new Genes(allele1, allele2);
+	}
 	
 	// Gathering all the gene possiblities from genes from mom and dad chicken
 	private void createGenePossibilities(){
@@ -60,6 +63,7 @@ public class Genetics {
 		for (Integer g: genes.getGenes()){
 			if (g.equals(1)){
 				color = "Brown";
+				break;
 			}
 			else {
 				color = "White";

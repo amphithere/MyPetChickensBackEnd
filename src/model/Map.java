@@ -1,4 +1,5 @@
 package model;
+import java.util.Observable;
 import java.util.Random;
 
 public class Map {
@@ -8,7 +9,7 @@ public class Map {
 	public Map(int size){
 		this.size = size;
 		area = new int[size][size];
-		r = new Random(size);
+		r = new Random();
 		setUpMap();
 	}
 	
