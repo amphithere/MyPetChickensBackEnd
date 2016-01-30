@@ -3,6 +3,7 @@ package controller;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class ChickenView extends JPanel implements Observer{
 	private ArrayList<Chicken> chickens;
 	private ArrayList<Coop> coops;
 	private Image brownChicken, whiteChicken, coop;
+	private Chicken selectedChicken;
 	
 	// questionable
 	public ChickenView(){
@@ -32,12 +34,28 @@ public class ChickenView extends JPanel implements Observer{
 		this.game = game;
 		try {
 			brownChicken = ImageIO.read(new File("./images/brown_chicken.png"));
-			whiteChicken = ImageIO.read(new File("./images/brown_chicken.png"));
+			whiteChicken = ImageIO.read(new File("./images/white_chicken.png"));
 			coop = ImageIO.read(new File("./images/house.png"));
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		repaint();
+	}
+	
+	public ArrayList<Chicken> getChickens(){
+		return chickens;
+	}
+	
+	public void selectChicken(Point p){
+		for (Chicken c:chickens){
+			if (c.getLocation().x == p.x/50 && c.getLocation().y == p.y/50){
+				selectedChicken = c;
+				System.out.println(selectedChicken);
+			}
+		}
+	}
+	
+	public Chicken getSelectedChicken(){
+		return selectedChicken;
 	}
 	
 	public void paintComponent(Graphics g){

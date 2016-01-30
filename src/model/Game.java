@@ -9,6 +9,8 @@ import java.util.Observable;
 import javax.swing.Timer;
 
 import Chickens.Chicken;
+import Chickens.StarterBrownChicken;
+import Chickens.StarterWhiteChicken;
 import coops.BasicCoop;
 import coops.Coop;
 
@@ -16,6 +18,7 @@ public class Game extends Observable{
 	private ArrayList<Chicken> chickens;
 	private ArrayList<Coop> coops;
 	private Timer wheelOfTime;
+	private Chicken selectedChicken;
 
 	public Game(){
 		this.chickens = new ArrayList<Chicken>();
@@ -23,6 +26,9 @@ public class Game extends Observable{
 		testingAddCoop(new Point(1,1));
 		wheelOfTime = new Timer(1000, new TimerActionListener());
 		wheelOfTime.start();
+		testingAddChickens(new StarterWhiteChicken(null, null));
+		testingAddChickens(new StarterBrownChicken(null, null));
+
 	}
 
 	private class TimerActionListener implements ActionListener {

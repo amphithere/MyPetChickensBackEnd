@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -41,7 +42,7 @@ public class ChickenGUI extends JFrame implements Observer{
 		display = new ChickenView(game);
 		display.setLocation(33, 14);
 		main.add(display);
-		display.setSize(624,563);
+		display.setSize(650,550);
 		newChickenButton.setText("New");
 		newChickenButton.setBounds(669, 6, 75, 29);
 		main.add(newChickenButton);
@@ -56,6 +57,7 @@ public class ChickenGUI extends JFrame implements Observer{
 	
 	public void registerListeners(){
 		display.addMouseListener(new UserClickListener());
+		display.addMouseMotionListener(new UserClickListener());
 		newChickenButton.addActionListener(new ButtonListener());
 	}
 	
@@ -70,13 +72,12 @@ public class ChickenGUI extends JFrame implements Observer{
 		}
 		
 	}
-	
-	private class UserClickListener implements MouseListener {
-
+	private class UserClickListener implements MouseListener, MouseMotionListener {
+		boolean clicked = false;
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
+			display.selectChicken(e.getPoint());	
+			clicked = true;
 		}
 
 		@Override
@@ -87,14 +88,12 @@ public class ChickenGUI extends JFrame implements Observer{
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -102,8 +101,27 @@ public class ChickenGUI extends JFrame implements Observer{
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			if (display.getSelectedChicken() != null){
+				display.repaint();
+				display.getSelectedChicken().setLocation(e.getPoint());
+				display.repaint();
+				display.update(display.getGraphics());
+				display.revalidate();
+				System.out.println(display.getSelectedChicken().getLocation());
+			}
+
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+//			
+		}
 		
 	}
+	
 	
 	@Override
 	public void update(Observable o, Object arg) {

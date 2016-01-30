@@ -33,17 +33,21 @@ public abstract class Chicken {
 	public void move(){
 		int newLocation = r.nextInt(4);
 		if(newLocation == 0){
-		   location.x += 1;
+		   location.x = (location.x + 1 + 13) %13;
 		}
 		if(newLocation == 1){
-		   location.x -= 1;
+			location.x = (location.x - 1 + 13) %13;
 		}
 		if(newLocation == 2){
-		   location.y += 1;
+			location.y = (location.y + 1 + 11) %11;
 		}
 		if(newLocation == 3){
-		   location.y -= 1;
+			location.y = (location.y - 1+11) %11;
 		}
+	}
+	
+	public void setLocation(Point p){
+		location = p;
 	}
 	
 	public Point getLocation(){
